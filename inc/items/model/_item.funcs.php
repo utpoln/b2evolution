@@ -2104,6 +2104,11 @@ function echo_publish_buttons( $Form, $creating, $edited_Item, $inskin = false, 
 
 	$Form->hidden( 'publish_status', $highest_publish_status );
 
+	if( is_admin_page() )
+	{
+		pre_dump( '$highest_publish_status = '.$highest_publish_status );
+	}
+
 	if( $highest_publish_status == 'published' && $UserSettings->get_collection_setting( 'show_quick_publish', $Blog->ID ) )
 	{ // Display this button to make a post published
 

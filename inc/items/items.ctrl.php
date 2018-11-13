@@ -1211,6 +1211,10 @@ switch( $action )
 		if( $action == 'update_publish' )
 		{ // load publish status from param, because a post can be published to many status
 			$post_status = load_publish_status();
+			if( is_admin_page() )
+			{
+				pre_dump( 'load_publish_status() = '.$post_status );
+			}
 		}
 
 		// Check if new category was started to create.  If yes check if it is valid:

@@ -10318,6 +10318,11 @@ class Item extends ItemLight
 			$this->status = $restricted_status;
 		}
 
+		if( is_admin_page() )
+		{
+			pre_dump( 'function restrict_status():', '$current_status = '.$current_status, '$restricted_status = '.$restricted_status );
+		}
+
 		if( $current_status != $this->get( 'status' ) )
 		{	// If current item status cannot be used for item collection
 			global $Messages;
