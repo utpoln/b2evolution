@@ -200,6 +200,11 @@ else
 	$AdminUI->set_page_manual_link( 'templates-list' );
 }
 
+if( in_array( $action, array( 'new', 'create', 'edit', 'update', 'copy', 'list' ) ) )
+{ // Initialize date picker for cronjob.form.php
+	init_datepicker_js();
+}
+
 // Display <html><head>...</head> section! (Note: should be done early if actions do not redirect)
 $AdminUI->disp_html_head();
 

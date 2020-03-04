@@ -32,7 +32,6 @@ class Template extends DataObject
 	var $template_code;
 	var $context;
 	var $owner_grp_ID;
-        var $owner_grp_ID_2;
 
 	/**
 	 * @var integer Translated template count
@@ -64,7 +63,12 @@ class Template extends DataObject
 			$this->template_code = $db_row->tpl_template_code;
 			$this->context = $db_row->tpl_context;
 			$this->owner_grp_ID = $db_row->tpl_owner_grp_ID;
-                        $this->owner_grp_ID_2 = $db_row->tpl_owner_grp_ID_2;
+                        $this->start_timestamp  = strtotime( $db_row->tpl_start_datetime );
+		}
+                else
+		{	// New object:
+			global $localtimenow;
+			$this->start_timestamp = $localtimenow;
 		}
 	}
 
@@ -89,6 +93,12 @@ class Template extends DataObject
 	 */
 	function load_from_Request()
 	{
+            
+                // start datetime:
+		param_date( 'template_date', sprintf( T_('Please enter a valid date using the following format: %s'), '<code>'.locale_input_datefmt().'</code>' ), true );
+		param_time( 'template_time' );
+		$this->set( 'start_datetime', form_date( get_param( 'template_date' ), get_param( 'template_time' ) ) );
+                
 		// Name:
 		param( 'tpl_name', 'string' );
 		param_check_not_empty( 'tpl_name', T_('Please enter a name for the template.') );
@@ -126,10 +136,6 @@ class Template extends DataObject
 		param_check_not_empty( 'tpl_owner_grp_ID', T_('Please select an owner group for the template.') );
 		$this->set_from_Request( 'owner_grp_ID' );
                 
-                // Second Owner Group:
-		param( 'tpl_owner_grp_ID_2', 'integer', NULL );
-		param_check_not_empty( 'tpl_owner_grp_ID_2', T_('Please select an second owner group for the template.') );
-		$this->set_from_Request( 'owner_grp_ID_2' );
 
 		return ! param_errors_detected();
 	}

@@ -15,6 +15,7 @@ if( !defined('EVO_MAIN_INIT') ) die( 'Please, do not access this page directly.'
 
 
 global $edited_Template, $locales, $AdminUI;
+global $localtimenow;
 
 // Determine if we are creating or updating...
 global $action;
@@ -64,8 +65,16 @@ $Form->begin_form( 'fform', $fieldset_title );
 	$GroupCache = & get_GroupCache();
 	$Form->select_object( 'tpl_owner_grp_ID', $edited_Template->get( 'owner_grp_ID' ), $GroupCache, T_('Owned by') );
         
-        // Second owner:
-        $Form->select_object( 'tpl_owner_grp_ID_2', $edited_Template->get( 'owner_grp_ID_2' ), $GroupCache, T_('Second Owned by') );
+        
+        
+        $Form->begin_line( T_('Date Time'), 'template_date', '', array( 'required' => true ) );
+
+	$Form->date_input( 'template_date', date2mysql( $edited_Template->start_timestamp ), '', array( 'required' => true ) );
+        echo ' '.T_('at').' ';
+
+	$Form->time_input( 'template_time', date2mysql( $edited_Template->start_timestamp ), '', array( 'required' => true ) );
+        
+        $Form->end_line();
 
 	// Base template ID:
 	$base_template_options = array( NULL => '('.TB_('None').')' );
