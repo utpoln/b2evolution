@@ -32,6 +32,7 @@ class Template extends DataObject
 	var $template_code;
 	var $context;
 	var $owner_grp_ID;
+        var $owner_grp_ID_2;
 
 	/**
 	 * @var integer Translated template count
@@ -63,6 +64,7 @@ class Template extends DataObject
 			$this->template_code = $db_row->tpl_template_code;
 			$this->context = $db_row->tpl_context;
 			$this->owner_grp_ID = $db_row->tpl_owner_grp_ID;
+                        $this->owner_grp_ID_2 = $db_row->tpl_owner_grp_ID_2;
 		}
 	}
 
@@ -123,6 +125,11 @@ class Template extends DataObject
 		param( 'tpl_owner_grp_ID', 'integer', NULL );
 		param_check_not_empty( 'tpl_owner_grp_ID', T_('Please select an owner group for the template.') );
 		$this->set_from_Request( 'owner_grp_ID' );
+                
+                // Second Owner Group:
+		param( 'tpl_owner_grp_ID_2', 'integer', NULL );
+		param_check_not_empty( 'tpl_owner_grp_ID_2', T_('Please select an second owner group for the template.') );
+		$this->set_from_Request( 'owner_grp_ID_2' );
 
 		return ! param_errors_detected();
 	}

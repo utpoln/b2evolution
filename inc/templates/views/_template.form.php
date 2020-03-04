@@ -63,6 +63,9 @@ $Form->begin_form( 'fform', $fieldset_title );
 	// Owner:
 	$GroupCache = & get_GroupCache();
 	$Form->select_object( 'tpl_owner_grp_ID', $edited_Template->get( 'owner_grp_ID' ), $GroupCache, T_('Owned by') );
+        
+        // Second owner:
+        $Form->select_object( 'tpl_owner_grp_ID_2', $edited_Template->get( 'owner_grp_ID_2' ), $GroupCache, T_('Second Owned by') );
 
 	// Base template ID:
 	$base_template_options = array( NULL => '('.TB_('None').')' );
