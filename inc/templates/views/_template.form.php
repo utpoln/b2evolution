@@ -67,14 +67,14 @@ $Form->begin_form( 'fform', $fieldset_title );
         
         
         
-        $Form->begin_line( T_('Date Time'), 'template_date', '', array( 'required' => true ) );
+	$Form->begin_line(T_('Date Time'), 'template_date', '', array('required' => true));
 
-	$Form->date_input( 'template_date', date2mysql( $edited_Template->start_timestamp ), '', array( 'required' => true ) );
-        echo ' '.T_('at').' ';
+	$Form->date_input('template_date', date2mysql($edited_Template->start_timestamp), '', array('required' => true));
+	echo ' ' . T_('at') . ' ';
 
-	$Form->time_input( 'template_time', date2mysql( $edited_Template->start_timestamp ), '', array( 'required' => true ) );
-        
-        $Form->end_line();
+	$Form->time_input('template_time', date2mysql($edited_Template->start_timestamp), '', array('required' => true));
+
+	$Form->end_line();
 
 	// Base template ID:
 	$base_template_options = array( NULL => '('.TB_('None').')' );

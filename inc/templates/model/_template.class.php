@@ -65,7 +65,7 @@ class Template extends DataObject
 			$this->owner_grp_ID = $db_row->tpl_owner_grp_ID;
                         $this->start_timestamp  = strtotime( $db_row->tpl_start_datetime );
 		}
-                else
+		else
 		{	// New object:
 			global $localtimenow;
 			$this->start_timestamp = $localtimenow;
